@@ -1,0 +1,18 @@
+{
+  "event": {
+    "id": "evt-0017",
+    "zone": "loading-zone",
+    "dwell_seconds": 4.2,
+    "captured_at_utc": "2026-09-07T11:16:22.481Z"
+  },
+  "detection": {
+    "class": "person",
+    "confidence": 0.93,
+    "model_id": "restricted-zone-detector",
+    "model_version": "1.2.0"
+  },
+  "site": {"id": "branch-01"},
+  "camera": {"id": "cam-06"},
+  "context": {"approved_exception": false}
+}
+

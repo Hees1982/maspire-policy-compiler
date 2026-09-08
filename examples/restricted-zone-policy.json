@@ -1,0 +1,30 @@
+{
+  "policy_id": "restricted-zone-entry",
+  "version": "1.0",
+  "name": "Forklift-only loading-zone entry",
+  "description": "Flags a person entering the loading zone when no approved exception is active.",
+  "severity": "high",
+  "when": {
+    "all": [
+      {"field": "detection.class", "operator": "eq", "value": "person"},
+      {"field": "event.zone", "operator": "eq", "value": "loading-zone"},
+      {"field": "detection.confidence", "operator": "gte", "value": 0.85},
+      {"field": "event.dwell_seconds", "operator": "gte", "value": 2},
+      {
+        "not": {
+          "field": "context.approved_exception",
+          "operator": "eq",
+          "value": true
+        }
+      }
+    ]
+  },
+  "evidence_requirements": [
+    "timestamped event metadata",
+    "two supporting frames",
+    "reviewer decision"
+  ],
+  "actions": ["queue-human-review", "notify-site-manager"],
+  "metadata": {"owner": "Health and Safety", "review_cycle_days": 90}
+}
+
